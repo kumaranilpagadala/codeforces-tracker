@@ -1,0 +1,86 @@
+body {
+    /* overflow: hidden; */
+    background-color: #0d1117;
+    color: white;
+}
+
+.credentialbox{
+    background-color: rgb(158, 156, 156);
+    width: 30vw;
+    border-radius: 3%;
+    color: black;
+}
+.credentialbox .btn{
+    width: 60%;
+    margin: 2% 20%;
+}
+
+.following,.todo {
+    background-color: #3c3c49d4;
+}
+/* .todo{
+    background-color: blue;
+} */
+/* .following .insider {
+    /* display: inline-block; */
+    /* background-color: rgb(255, 0, 81); 
+/* }  */
+/* Hide scrollbar for Chrome, Safari and Opera */
+.followscroll{
+    overflow-y: scroll; 
+    height: 70vh;
+}
+.todocheck{
+    display: inline-block;
+    margin-right: 2%;
+}
+.todohead{
+    display: inline-block;
+}
+
+#circle {
+    display: inline-block;
+    margin-left: 2%;
+    margin-top: -2%;
+    align-content: center;
+    background-color: #0088ff63;
+    border-radius: 50%; width: 50px; height: 50px;
+}
+.scrollhead{
+    display: inline-block;
+}
+
+.followscroll .btn :hover {
+    cursor: pointer;
+} 
+
+.followscroll::-webkit-scrollbar{
+    display: block;
+    width: 5px;
+    background-color:  #0d1117;
+}
+.followscroll::-webkit-scrollbar-thumb {
+    display: block;
+    height: 5vh;
+    border-radius: 90px;
+    background: #aaa;
+} 
+
+
+/* .followscroll::-webkit-scrollbar {
+    display: none;
+} */
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+/* .followscroll {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;  
+} */
+
+/* .handlesearch{
+    margin: 2% 10%;
+} */
+.handlesearch .btn,.text{
+    width: 80%;
+    margin: 2% 10%;
+}

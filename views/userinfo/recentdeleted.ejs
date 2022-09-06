@@ -1,0 +1,50 @@
+<% layout('layouts/boilerplate')%>
+<div class="container offset-1">
+    <div class="row justify-content-between">
+        <div class="col-6 mb-2 me-2">
+            <h3 class="scrollhead">Recent Deleted</h3>
+            <button type="button" class="btn btn-sm btn-primary" id="circle"><%=user.recentdeleted.length%></button>
+        </div>
+        <div class="col-4 mb-1 mt-1">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <form action="/<%=user.username%>/restoreall" method="post">
+                    <button class="btn btn-sm btn-success mt-2 rounded me-2">restore all</button>
+                </form>
+                <form action="/<%=user.username%>/deletebin" method="post">
+                    <button class="btn btn-sm btn-danger mt-2">Delete all</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="followscroll">
+            <%user.recentdeleted.forEach( (prob,i)=>{%> 
+                <div class="todo card-body mb-2 rounded ">
+                    <div class="mb-2">
+                        <% for(let x in prob) {%>
+                                <div>
+                                    <% if(x === 'problemUrl') {%> 
+                                        <%=x%>: <a href='https://codeforces.com<%=prob[`${x}`]%>' target="_blank" rel="noopener noreferrer"><%=prob[`${x}`]%></a>
+                                    <% }else if(x==='problemName'){%> 
+                                        <%=x %>: <%= prob[`${x}`] %>  
+                                    <%}%> 
+                                </div>
+                        <% } %> 
+                        <s>
+                        </s>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <form action="/<%=user.username%>/deleteone" method="post">
+                            <input type="text" name="probid" id="probid" hidden value="<%=prob._id%>">
+                            <button type="submit" class="btn btn-sm btn-danger me-2">delete</button>
+                        </form>
+                        <form action="/<%=user.username%>/restore" method="post">
+                            <input type="text" name="probid" id="probid" hidden value="<%=prob._id%>">
+                            <button type="submit" class="btn btn-sm btn-success">restore</button>
+                        </form>
+                    </div>
+                </div>
+             <% }) %> 
+        </div>
+    </div>
+</div>

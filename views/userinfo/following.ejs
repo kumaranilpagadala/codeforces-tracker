@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+
+<div class="container" >
+    <div class="row">
+        <div class="col-8" >
+            <h3 class="scrollhead">Friends List:</h3>
+            <button type="button" class="btn btn-sm btn-primary" id="circle"><%=user.following.length%> </button>
+            <div class="followscroll">
+                <%if(user.following.length){%> 
+                    <%user.following.forEach((friend,i)=>{%> 
+                        <div class="following card-body mb-2 rounded">
+                            <div class="friendtext">
+                                <h5 class="insider"><%=friend.name%></h5>
+                            </div>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-info btn-sm insider rounded me-2" href="https://codeforces.com/profile/<%=friend.name%>" role="button" target="_blank" rel="noopener noreferrer">Profile</a>
+                                <form action="/<%=user.username%>/unfollow" method="post" class="insider">
+                                    <input type="hidden" name="userHandle" value="<%=user.username%>"/>
+                                    <input type="hidden" name="friendHandle" value="<%=friend.name%>"/>
+                                    <button class="btn btn-sm insider btn-danger"onclick="this.form.submit()" >unfollow</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }) %>
+                <% } %> 
+            </div>
+        </div>
+        <div class="col-4" >
+            <div class="card-body handlesearch">
+                <h4>Search Handle:</h4>
+                <form action="/<%=user.username%>/addfollow" class="post" method="post">
+                    <div class="mb-3">
+                        <input type="text" hidden name="userHandle" id="userHandle" class="text" value="<%=currentUser.username%> ">
+                        <input type="text" name="friendHandle" id="friendHandle" class="text" placeholder="friendHandle">
+                    </div>
+                    <button class="btn btn-sm  btn-success btn-block  submit">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

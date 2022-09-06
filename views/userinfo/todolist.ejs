@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate')%>
+<div class="container offset-1">
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h3 class="scrollhead">Todo-List  </h3>
+            <button type="button" class="btn btn-sm btn-primary" id="circle"><%=user.todo.length%> </button>
+        </div>
+        <div class="col-4">
+            <form action="/<%=user.username%>/updatetodo" method="post">
+                <button class="btn btn-success btn-sm mt-2">Refresh</button>
+            </form>
+        </div>
+        <div class="followscroll col-9">
+            <ul>
+                <%user.todo.forEach( (prob,i)=>{%> 
+                    <div class="card-body mb-2 rounded todo">
+                        <form action="/<%=user.username%>/todo/<%=prob._id%>" method="post">
+                            <div class="todocheck">
+                                <input class="form-check-input"id='<%=i%>' name="inputcheck" onChange="this.form.submit()" type="checkbox" value='<%=prob['problemId']%>'>
+                                <input type="hidden" name="handle" value="<%=user.username%>"/>
+                            </div>
+                            <label for="#">
+                                <div class="mb-2">
+                                    <% for(let x in prob) {%>
+                                        <div class="mt-2">
+                                            <% if(x === 'problemUrl') {%> 
+                                                Link: <a href='https://codeforces.com<%=prob[`${x}`]%>' target="_blank" rel="noopener noreferrer"><%=prob[`${x}`]%></a>
+                                            <% }else if(x==='problemName'){%> 
+                                                Problem Name: <%= prob[`${x}`] %>  
+                                            <%}%>   
+                                        </div>
+                                    <% } %> 
+                                </div>
+                            </label>
+                        </form>
+                    </div>
+                <% }) %> 
+            </ul>
+        </div>
+    </div>
+</div>
